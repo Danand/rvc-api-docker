@@ -1,9 +1,11 @@
 FROM alpine:3.19.1 as assets
 
-RUN apk add --update \
-      bash \
-      git \
-      git-lfs
+RUN apk add \
+      --update \
+      --no-cache \
+        bash \
+        git \
+        git-lfs
 
 COPY --chmod=755 ./assets-download.sh /assets-download.sh
 
@@ -16,7 +18,8 @@ SHELL [ "/bin/bash", "-c" ]
 RUN apt update && \
     apt install -y \
       libsndfile1 \
-      libsndfile1-dev
+      libsndfile1-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY --from=assets /assets /assets
 
