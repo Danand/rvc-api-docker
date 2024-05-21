@@ -26,10 +26,9 @@ RUN pip install "poetry==1.7.1"
 
 COPY ./pyproject.toml .
 COPY ./README.md .
+COPY ./rvc ./rvc
 
 RUN poetry install
-
-COPY ./rvc ./rvc
 
 COPY ./.env-docker ./.env
 
