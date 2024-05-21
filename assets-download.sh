@@ -27,16 +27,18 @@ git lfs pull --include="uvr5_weights"
 git lfs pull --include="rmvpe.pt"
 git lfs pull --include="rmvpe.onnx"
 
+rm -rf .git
+
 popd
 
 mkdir -p "${assets_dir}"
 
-cp "${REPO_FOLDER}/hubert_base.pt" "${assets_dir}/hubert_base.pt"
+mv "${REPO_FOLDER}/hubert_base.pt" "${assets_dir}/hubert_base.pt"
 
 mkdir -p "${assets_dir}/rmvpe"
 
-cp "${REPO_FOLDER}/rmvpe.pt" "${assets_dir}/rmvpe/rmvpe.pt"
-cp "${REPO_FOLDER}/rmvpe.onnx" "${assets_dir}/rmvpe/rmvpe.onnx"
+mv "${REPO_FOLDER}/rmvpe.pt" "${assets_dir}/rmvpe/rmvpe.pt"
+mv "${REPO_FOLDER}/rmvpe.onnx" "${assets_dir}/rmvpe/rmvpe.onnx"
 
-cp -r "${REPO_FOLDER}/pretrained" "${assets_dir}/pretrained"
-cp -r "${REPO_FOLDER}/uvr5_weights" "${assets_dir}/uvr5_weights"
+mv "${REPO_FOLDER}/pretrained" "${assets_dir}/pretrained"
+mv "${REPO_FOLDER}/uvr5_weights" "${assets_dir}/uvr5_weights"
