@@ -6,8 +6,8 @@ on:
       - '*'
 
 jobs:
-  build-and-publish:
-    runs-on: ubuntu-latest
+  build-and-push:
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
