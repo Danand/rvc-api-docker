@@ -28,11 +28,12 @@ WORKDIR /app
 RUN pip install "poetry==1.7.1"
 
 COPY ./pyproject.toml .
-COPY ./README.md .
+
+RUN poetry install \
+      --no-interaction \
+      --no-root
+
 COPY ./rvc ./rvc
-
-RUN poetry install
-
 COPY ./.env-docker ./.env
 
 CMD [ "poetry", "run", "poe", "rvc-api" ]
