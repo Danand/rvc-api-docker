@@ -40,5 +40,5 @@ jobs:
           tags: |
             ghcr.io/${{ steps.repository-lowercase.outputs.lowercase }}:${{ github.ref_name }}
             ghcr.io/${{ steps.repository-lowercase.outputs.lowercase }}:latest
-          cache-from: type=registry,ref=ghcr.io/${{ steps.repository-lowercase.outputs.lowercase }}:latest
-          cache-to: type=registry,ref=ghcr.io/${{ steps.repository-lowercase.outputs.lowercase }}:latest,mode=max
+          cache-from: type=registry,ref=ghcr.io/${{ steps.repository-lowercase.outputs.lowercase }}:cache
+          cache-to: type=registry,ref=ghcr.io/${{ steps.repository-lowercase.outputs.lowercase }}:cache,mode=max
