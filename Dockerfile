@@ -26,13 +26,13 @@ COPY --from=assets /assets /assets
 
 WORKDIR /app
 
-RUN pip install "poetry==1.7.1"
-
 COPY ./pyproject.toml .
 
-RUN poetry install \
+RUN pip install "poetry==1.7.1" && \
+    poetry install \
       --no-interaction \
-      --no-root
+      --no-root && \
+    poetry cache purge --all
 
 COPY ./rvc ./rvc
 COPY ./.env-docker ./.env
