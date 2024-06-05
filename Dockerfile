@@ -28,12 +28,14 @@ WORKDIR /app
 
 COPY ./pyproject.toml .
 
-RUN pip install "poetry==1.7.1" && \
+RUN pip install \
+      --no-cache-dir \
+      "poetry==1.7.1" && \
+    poetry config virtualenvs.create false && \
     poetry install \
       --no-interaction \
       --no-root && \
-    poetry cache clear --all . && \
-    rm -rf /root/.cache/pip
+    poetry cache clear --all .
 
 COPY ./rvc ./rvc
 COPY ./.env-docker ./.env
