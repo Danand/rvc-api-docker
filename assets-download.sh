@@ -2,6 +2,12 @@
 #
 # Downloads required large files for RVC.
 
+function download() {
+  local path="$1"
+  echo "Downloading ${path}"
+  git lfs pull --include="${path}"
+}
+
 set -e
 
 REPO_FOLDER="VoiceConversionWebUI"
@@ -16,16 +22,18 @@ git clone https://huggingface.co/lj1995/VoiceConversionWebUI "${REPO_FOLDER}"
 
 pushd "${REPO_FOLDER}"
 
+git config advice.detachedHead false
+
 git checkout "${assets_commit_hash}"
 
 unset GIT_LFS_SKIP_SMUDGE
 unset GIT_CLONE_PROTECTION_ACTIVE
 
-git lfs pull --include="hubert_base.pt"
-git lfs pull --include="pretrained"
-git lfs pull --include="uvr5_weights"
-git lfs pull --include="rmvpe.pt"
-git lfs pull --include="rmvpe.onnx"
+download "hubert_base.pt"
+download "pretrained"
+download "uvr5_weights"
+download "rmvpe.pt"
+download "rmvpe.onnx"
 
 rm -rf .git
 
