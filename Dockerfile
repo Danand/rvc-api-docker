@@ -19,6 +19,7 @@ RUN apt update && \
     apt install -y \
       libsndfile1 \
       libsndfile1-dev && \
+    apt clean && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=assets /assets /assets

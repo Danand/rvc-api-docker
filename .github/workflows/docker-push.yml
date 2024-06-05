@@ -16,6 +16,12 @@ jobs:
       - name: Check Disk Space after Checkout
         run: df -h
 
+      - name: Prune Docker System
+        run: docker system prune -af
+
+      - name: Check Disk Space after Prune Docker System
+        run: df -h
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
