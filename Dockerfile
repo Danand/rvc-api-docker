@@ -32,7 +32,8 @@ RUN pip install "poetry==1.7.1" && \
     poetry install \
       --no-interaction \
       --no-root && \
-    poetry cache purge --all
+    poetry cache purge --all && \
+    rm -rf /root/.cache/pip
 
 COPY ./rvc ./rvc
 COPY ./.env-docker ./.env
