@@ -26,11 +26,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets._GITHUB_PAT }}
 
-      - name: Git lowercase repository name
-        id: repository-lowercase
+      - name: Git lowercase repository owner
+        id: repository-owner-lowercase
         uses: ASzc/change-string-case-action@v6
         with:
-          string: ${{ github.repository }}
+          string: ${{ github.repository_owner }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
@@ -38,5 +38,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ steps.repository-lowercase.outputs.lowercase }}:${{ github.ref_name }}
-            ghcr.io/${{ steps.repository-lowercase.outputs.lowercase }}:latest
+            ghcr.io/${{ steps.repository-owner-lowercase.outputs.lowercase }}/rvc-api:${{ github.ref_name }}
+            ghcr.io/${{ steps.repository-owner-lowercase.outputs.lowercase }}/rvc-api:latest
